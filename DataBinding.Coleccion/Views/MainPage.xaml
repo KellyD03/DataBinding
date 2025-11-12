@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:DataBinding.Coleccion.Models"
+             x:Class="DataBinding.Coleccion.Views.MainPage"
+             Title="MainPage"
+             BackgroundColor="#F0F0F0">
+
+    <Grid
+        RowDefinitions="Auto,*, Auto,Auto"
+        Padding="16"
+        RowSpacing="10">
+
+        <Grid
+            ColumnDefinitions="*, Auto, Auto"
+            ColumnSpacing="4">
+            <Label
+                Text="Origenes del paquete"
+                TextColor="Black"
+                VerticalOptions="Center"/>
+            <Button
+                Text="+"
+                Grid.Column="1"
+                TextColor="LightGreen"
+                BackgroundColor="White"
+                FontSize="Medium"
+                BorderWidth="1"
+                BorderColor="Black"
+                CornerRadius="3"
+                Clicked="OnAgregarButton_Clicked"/>
+            <Button
+                Text="X"
+                Grid.Column="2"
+                TextColor="Red"
+                BackgroundColor="White"
+                FontSize="Medium"
+                HorizontalOptions="End"
+                BorderWidth="1"
+                BorderColor="Black"
+                CornerRadius="3"
+                Clicked="OnDeleteButton_Clicked"/>
+        </Grid>
+        <CollectionView 
+            Grid.Row="1"
+            Background="Lavender"
+            SelectionMode="Single"
+            EmptyView="Aun no se registran origenes de paquetes"
+            SelectionChanged="OrigenesListView_SelectionChanged"
+            x:Name="OrigenesListView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type models:OrigenDePaquete}">
+                    <Border
+                        Stroke="Blue"
+                        Padding="8"
+                        />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <!--//<ListView.ItemsSource>
+             <x:Array Type="{x:Type x:String}">
+             <x:String>Superman</x:String>
+             <x:String>Thor</x:String>
+             <x:String>Batman</x:String>
+             <x:String>Spiderman</x:String>
+             </x:Array>
+             </ListView.ItemsSource>
+
+             <ListView.ItemTemplate>
+                 <DataTemplate>
+                     <TextCell>
+                 
+                     </TextCell>
+                     <Label
+                         Text=""
+                         FontSize="16"/>
+                 </DataTemplate>
+             </ListView.ItemTemplate> //-->
+
+        </CollectionView>
+
+        <Grid
+         Grid.Row="2"
+         RowDefinitions="Auto, *"
+         ColumnDefinitions="Auto, *, Auto"
+         RowSpacing="4"
+         ColumnSpacing="7">
+            <Label
+               Text="Nombre"
+               TextColor="Black"
+               VerticalOptions="Center"/>
+           <Entry
+               Grid.Column="1"
+               BackgroundColor="#FAFAFA"
+               TextColor="Black"
+               x:Name="NombreEntry"/>
+           <Label
+               Grid.Row="1"
+               Text="Origen"
+               TextColor="Black"/>
+           <Entry
+               Grid.Row="1"
+               Grid.Column="1"
+               BackgroundColor="#FAFAFA"
+               TextColor="Black"
+               x:Name="OrigenEntry"/>
+           <Button
+               Grid.Row="1"
+               Grid.Column="2"
+               Text="Actualizar"
+               BackgroundColor="White"
+               BorderWidth="1"
+               BorderColor="Black"
+               CornerRadius="3"
+               Clicked="OnActualizarButton_Clicked"/>
+        </Grid>
+        <HorizontalStackLayout
+            Grid.Row="3"
+            HorizontalOptions="End"
+            Spacing="10">
+            <Button
+                Text="Aceptar"
+                BackgroundColor="White"
+                BorderWidth="1"
+                BorderColor="Black"
+                CornerRadius="3"/>
+            <Button
+                Text="Cancelar"
+                BackgroundColor="White"
+                BorderWidth="1"
+                BorderColor="Black"
+                CornerRadius="3"/>
+        </HorizontalStackLayout>
+    </Grid>
+</ContentPage>
